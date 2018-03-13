@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Circle = ({ strokeWidth = 10, bgWidth = 10, strokeColor='#1571b6', bgColor = '#f5f5f7', strokeLinecap = 'butt', percent = 50, style = {} }) => {
-  const radius = (50 - strokeWidth / 2);
+const Circle = ({
+  strokeWidth = 10, bgWidth = 10, strokeColor = '#1571b6', bgColor = '#f5f5f7', strokeLinecap = 'butt', percent = 50, style = {},
+}) => {
+  const radius = (50 - (strokeWidth / 2));
   const path = `M 50,50 m 0,-${radius}
    a ${radius},${radius} 0 1 1 0,${2 * radius}
    a ${radius},${radius} 0 1 1 0,-${2 * radius}`;
@@ -24,7 +26,7 @@ const Circle = ({ strokeWidth = 10, bgWidth = 10, strokeColor='#1571b6', bgColor
         fillOpacity="0"
         style={{
           strokeDasharray: `${circumference}px ${circumference}px`,
-          strokeDashoffset: `${((100 - percent) / 100 * circumference)}px`,
+          strokeDashoffset: `${(((100 - percent) / 100) * circumference)}px`,
         }}
       />
     </svg>
@@ -37,8 +39,18 @@ Circle.propTypes = {
   strokeColor: PropTypes.string,
   bgColor: PropTypes.string,
   strokeLinecap: PropTypes.string,
-  percent: PropTypes.string,
-  style: PropTypes.object,
+  percent: PropTypes.number,
+  style: PropTypes.shape(),
+};
+
+Circle.defaultProps = {
+  strokeWidth: 10,
+  bgWidth: 10,
+  strokeColor: '#1571b6',
+  bgColor: '#f5f5f7',
+  strokeLinecap: 'butt',
+  percent: 50,
+  style: {},
 };
 
 export default Circle;
